@@ -63,7 +63,7 @@ func sample_chailcall_main(baseDirectory: String) {
                                  .where(SampleChainCall.Properties.intValue==1)
                                  .group(by: SampleChainCall.Properties.intValue)
                                  .limit(3)
-        let objects: [SampleChainCall] = try select.allObjects()
+        let _: [SampleChainCall] = try select.allObjects()
     } catch let error {
         print("select objects error: \(error)")
     }
@@ -75,7 +75,7 @@ func sample_chailcall_main(baseDirectory: String) {
                                     .where(SampleChainCall.Properties.intValue==1)
                                     .limit(3)
         let needBreak = true
-        while let row = try rowSelect.nextRow() {
+        while (try rowSelect.nextRow()) != nil {
             if needBreak {
                 break
             }

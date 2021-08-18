@@ -46,7 +46,7 @@ func sample_file_main(baseDirectory: String) {
         try database.close(onClosed: {
             fileSize = try database.getFilesSize()
         })
-        print("file size: \(fileSize)")
+        print("file size: \(fileSize ?? 0)")
     } catch let error {
         print("file size error: \(error)")
     }

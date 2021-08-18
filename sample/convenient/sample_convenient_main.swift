@@ -99,14 +99,14 @@ func sample_convenient_main(baseDirectory: String) {
 
     //Select one object
     do {
-        let object: SampleConvenient? = try database.getObject(fromTable: tableName)
+        let _: SampleConvenient? = try database.getObject(fromTable: tableName)
     } catch let error {
         print("select one object error: \(error)")
     }
 
     //Select objects
     do {
-        let objects: [SampleConvenient] = try database.getObjects(fromTable: tableName)
+        let _: [SampleConvenient] = try database.getObjects(fromTable: tableName)
     } catch let error {
         print("select objects error: \(error)")
     }
@@ -114,7 +114,7 @@ func sample_convenient_main(baseDirectory: String) {
     //Select objects with condition/order/offset/limit
     do {
         let order = [(SampleChainCall.Properties.intValue).asOrder(by: .ascending)]
-        let objects: [SampleConvenient] = try database.getObjects(fromTable: tableName,
+        let _: [SampleConvenient] = try database.getObjects(fromTable: tableName,
                                                                   orderBy: order,
                                                                   limit: 1,
                                                                   offset: 2)
@@ -124,7 +124,7 @@ func sample_convenient_main(baseDirectory: String) {
 
     //Select part of objects
     do {
-        let objects: [SampleConvenient] = try database.getObjects(on: SampleConvenient.Properties.stringValue,
+        let _: [SampleConvenient] = try database.getObjects(on: SampleConvenient.Properties.stringValue,
                                                                   fromTable: tableName)
     } catch let error {
         print("select part of objects error: \(error)")
@@ -134,7 +134,7 @@ func sample_convenient_main(baseDirectory: String) {
     do {
         let column: FundamentalColumn = try database.getColumn(on: SampleConvenient.Properties.stringValue,
                                                                fromTable: tableName)
-        for string in column {
+        for _ in column {
             //do sth
         }
     } catch let error {
@@ -145,15 +145,15 @@ func sample_convenient_main(baseDirectory: String) {
     do {
         let properties = [SampleConvenient.Properties.intValue, SampleConvenient.Properties.stringValue]
         let row: FundamentalRow = try database.getRow(on: properties, fromTable: tableName)
-        let intValue = row[0]
-        let stringValue = row[1]
+        _ = row[0]
+        _ = row[1]
     } catch let error {
         print("select row error: \(error)")
     }
 
     //Select one value
     do {
-        let count = try database.getValue(on: SampleConvenient.Properties.any.count(), fromTable: tableName)
+        _ = try database.getValue(on: SampleConvenient.Properties.any.count(), fromTable: tableName)
     } catch let error {
         print("select one value error: \(error)")
     }
@@ -161,7 +161,7 @@ func sample_convenient_main(baseDirectory: String) {
     //Select aggregation
     do {
         let results = [SampleConvenient.Properties.intValue.avg(), SampleConvenient.Properties.stringValue.count()]
-        let row: FundamentalRow = try database.getRow(on: results, fromTable: tableName)
+        let _: FundamentalRow = try database.getRow(on: results, fromTable: tableName)
     } catch let error {
         print("select aggregation error: \(error)")
     }
@@ -169,7 +169,7 @@ func sample_convenient_main(baseDirectory: String) {
     //Select distinct result
     do {
         let property = SampleConvenient.Properties.intValue
-        let distinctCount = try database.getDistinctValue(on: property, fromTable: tableName)
+        _ = try database.getDistinctValue(on: property, fromTable: tableName)
     } catch let error {
         print("select distinct result error: \(error)")
     }

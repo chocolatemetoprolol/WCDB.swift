@@ -71,7 +71,7 @@ func sample_advance_main(baseDirectory: String) {
         let condition = property1 == property2
         let tables = [tableName, tableName2]
         let select = try database.prepareMultiSelect(on: properties, fromTables: tables).where(condition)
-        let multiObjects = select.allMultiObjects
+        _ = select.allMultiObjects
     } catch let error {
         print("multi select error: \(error)")
     }
@@ -79,7 +79,7 @@ func sample_advance_main(baseDirectory: String) {
     //Column coding
     do {
         let object: SampleAdvance? = try database.getObject(fromTable: tableName)
-        let value: Float? = object?.columnCoding?.floatValue
+        let _: Float? = object?.columnCoding?.floatValue
     } catch let error {
         print("column coding error: \(error)")
     }
